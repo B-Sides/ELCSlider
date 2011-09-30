@@ -8,21 +8,46 @@
 
 #import "ELCSlider.h"
 
+@interface ELCSlider (Internal)
+-(void)userDidLetGo;
+@end
 
 @implementation ELCSlider
 
+-(void)configureForInit
+{
+    
+    [self addTarget:self action:@selector(valueChanged) forControlEvents:UIControlEventValueChanged];
+    [self addTarget:self action:@selector(userDidLetGo) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
+    
+    sliderValueController = [[SliderValueViewController alloc] initWithNibName:@"SliderValueViewController" bundle:[NSBundle mainBundle]];
+    popoverController = [[UIPopoverController alloc] initWithContentViewController:sliderValueController];
+    [popoverController setPopoverContentSize:sliderValueController.view.frame.size];
+}
+
 -(id)initWithCoder:(NSCoder *)aDecoder {
 
-	if(self = [super initWithCoder:aDecoder]) {
-        
-		[self addTarget:self action:@selector(valueChanged) forControlEvents:UIControlEventValueChanged];
-		
-		sliderValueController = [[SliderValueViewController alloc] initWithNibName:@"SliderValueViewController" bundle:[NSBundle mainBundle]];
-		popoverController = [[UIPopoverController alloc] initWithContentViewController:sliderValueController];
-		[popoverController setPopoverContentSize:sliderValueController.view.frame.size];
+	if((self = [super initWithCoder:aDecoder])) {
+        [self configureForInit];
     }
 	
     return self;	
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+    if (!(self = [super initWithFrame:frame]))
+        return nil;
+    
+    [self configureForInit];
+    
+    return self;
+}
+
+-(void)userDidLetGo
+{
+    if (popoverController.isPopoverVisible)
+        [popoverController dismissPopoverAnimated:YES];
 }
 
 -(void)valueChanged {
