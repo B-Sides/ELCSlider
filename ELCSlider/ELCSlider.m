@@ -100,7 +100,10 @@
 }
 */
 
-- (void)dealloc {
+- (void)dealloc {    
+    if (popoverController.isPopoverVisible)
+        [popoverController dismissPopoverAnimated:NO];
+    
     [super dealloc];
 }
 
