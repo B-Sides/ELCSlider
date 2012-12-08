@@ -1,13 +1,14 @@
 ****** DESCRIPTION ******
 
-This is a UISlider subclass that is compatiable with iPad. The class adds a UIPopover to the slider that displays the value currently selected by the slider. The classes SliderValueViewController is meant to be modified to meet an applications specific needs.
-
-This fork allows develoeprs to instantiate the UISlider sublcass programatically (not from a nib). I did this to use it in a UITableViewCell. I also wanted the popover displaying the value to disappear as soon as the user let you, since the table view in question was itself in a popover and this isn't INCEPTION.
+This is a UISlider subclass that is compatiable with iPad. The class adds a 
+UIPopover to the slider that displays the value currently selected by the
+slider. The classes SliderValueViewController is meant to be modified to 
+meet an applications specific needs.
 
 ****** HOW TO USE ******
 
-Simply place a UISlider in a XIB and change its class to be an ELCSlider. That is it, you're done!
-
+Simply place a UISlider in a XIB and change its class to be an ELCSlider or
+instantiate programatically. That is it, you're done!
 
 The MIT License
 
