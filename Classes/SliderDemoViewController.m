@@ -7,6 +7,7 @@
 //
 
 #import "SliderDemoViewController.h"
+#import "ELCSlider.h" // for instantiate programmatically.
 
 @implementation SliderDemoViewController
 
@@ -32,6 +33,13 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Instantiate programmatically
+    ELCSlider *slider = [[ELCSlider alloc] initWithFrame:CGRectMake(224, 200, 320, 88)];
+    slider.minimumValue = 0.0f;
+    slider.maximumValue = 10.0f;
+    slider.value = 5.0f;
+    [self.view addSubview:slider];
 }
 */
 
